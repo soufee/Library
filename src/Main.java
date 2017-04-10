@@ -26,7 +26,8 @@ public class Main {
          for(Book book : DataManager.deserialize("books.txt"))
              library.buyBook(book, 1);
 library.takeBook("Michel", "Jackson","",333333,"Intro to Java");
-DataManager.serializeToFile(library.getCatalog());
+library.returnBook("Michel", "Jackson","",333333,"Intro to Java");
+DataManager.serializeToFile(library.getCatalog(), "books.txt");
 
 for(Reader r : DataManager.<Reader>deexternal("readers.txt", Reader.class))
 library.getReaders().add(r);

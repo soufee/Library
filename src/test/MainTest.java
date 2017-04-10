@@ -6,7 +6,10 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.UUID;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * Created by Shoma on 10.04.2017.
@@ -55,6 +58,49 @@ class MainTest {
             assertTrue(book.getYear() == (bookFromCatalog.getYear()));
         }
     }
+    @Test
+    public void takeBookTest()
+    {
+        Book book = new Book("Schildt", "Intro to Java", 1952, "123123123q");
+
+        buyBookTestStore();
+
+        int quant = library.getStore().size();
+        assertEquals(3, quant);
+        library.takeBook("Michel", "Jackson","",333333,"Intro to Java");
+        assertEquals(1, library.getReaders().size());
+        Reader reader = new Reader("Michel", "Jackson", "",333333);
+        assertTrue(reader.equals(library.getReaders().iterator().next()));
+
+        assertEquals(1,library.getBookings().size());
+
+        UUID uuid = UUID.randomUUID();
+       BookInstance bookInstance = new BookInstance(book, uuid);
+      assertEquals(bookInstance.getBook(), library.getBookings().iterator().next().getBookInstance().getBook());
+
+        quant = library.getStore().size();
+        assertEquals(2, quant);
+    }
+
+    public void returnBookTest()
+    {
+
+        buyBookTestStore();
+        takeBookTest();
+//        int quant = library.getStore().size();
+//        assertEquals(3, quant);
+//        library.takeBook("Michel", "Jackson","",333333,"Intro to Java");
+//        assertEquals(1,library.getBookings().size());
+     //   Booking booking = library.getBookings().iterator().next();
+     library.returnBook("Michel", "Jackson","",333333,"Intro to Java");
+       assertEquals(0,library.getBookings().size());
+
+
+
+    }
+
+
+
 
 
 }
