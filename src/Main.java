@@ -5,9 +5,12 @@ import library.models.BookInstance;
 import library.models.Reader;
 import library.utils.DataManager;
 
+
+
 import java.io.*;
 import java.util.HashSet;
 import java.util.Set;
+
 
 public class Main {
 
@@ -34,5 +37,6 @@ DataManager.externalObject(library.getReaders(),"readers.txt");
  DataManager.externalObject(library.getStore(),"bookinstance.txt");
 
         library.showAllData();
+
     }
-}
+    }
