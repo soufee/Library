@@ -23,7 +23,7 @@ public class Main {
    library.buyBook("Intro to Java", "Schildt", "123123123q", 3, 1952);
    library.buyBook("How to hack Pentagon", "Snowden", "1225653123ewr", 2, 2017);
        library.buyBook("Thinking in Java","Gilbert","123123123qwe",1,2017);
-         for(Book book : DataManager.deserialize())
+         for(Book book : DataManager.deserialize("books.txt"))
              library.buyBook(book, 1);
 library.takeBook("Michel", "Jackson","",333333,"Intro to Java");
 DataManager.serializeToFile(library.getCatalog());

@@ -2,7 +2,9 @@ package library.utils;
 
 import library.Library;
 import library.models.*;
-import library.models.Reader;
+import sun.misc.IOUtils;
+import sun.nio.ch.IOUtil;
+
 
 import java.io.*;
 import java.util.HashSet;
@@ -12,6 +14,7 @@ import java.util.Set;
  * Created by Shoma on 05.04.2017.
  */
 public class DataManager {
+
     public static void serializeToFile(Set<Book> books) {
         try(FileOutputStream fos = new FileOutputStream("books.txt");
             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
@@ -23,10 +26,11 @@ oos.writeObject(null);
         }
     }
 
-    public static Set<Book> deserialize() {
+    public static Set<Book> deserialize(String content) {
         Set<Book> books = new HashSet<>();
-        try(FileInputStream fis = new FileInputStream("books.txt");
-            ObjectInputStream ois = new ObjectInputStream(fis)) {
+
+        try(InputStream is = new ByteArrayInputStream(content.getBytes());
+            ObjectInputStream ois = new ObjectInputStream(is)) {
 
             Book book = null;
             while((book = (Book) ois.readObject()) != null) {
@@ -87,4 +91,6 @@ oos.writeObject(null);
 
         return set;
     }
-    }
+
+
+}
