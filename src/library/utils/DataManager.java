@@ -9,7 +9,7 @@ import java.util.Set;
 /**
  * Created by Shoma on 05.04.2017.
  */
-public class DataManager {
+public class DataManager implements MyInterface{
 
     public static void serializeToFile(Set<Book> books, String fileName) {
         try (FileOutputStream fos = new FileOutputStream(fileName);
@@ -86,5 +86,39 @@ public class DataManager {
         return set;
     }
 
+//--------------------------for proxy-------------------------
 
+    public void serializeOneBook(Book book) {
+        try (FileOutputStream fos = new FileOutputStream("book1.txt");
+             ObjectOutputStream oos = new ObjectOutputStream(fos)) {
+
+                oos.writeObject(book);
+
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+
+    public Book deserializeOneBook() {
+       Book book = null;
+
+        try (FileInputStream fis = new FileInputStream("book1.txt");
+             ObjectInputStream ois = new ObjectInputStream(fis))
+        {
+
+           book = (Book) ois.readObject();
+
+        return book;
+
+        }
+        catch (Exception e)
+        {
+         e.printStackTrace();
+        }
+     finally {
+            return book;
+        }
+
+    }
 }

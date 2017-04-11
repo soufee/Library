@@ -17,7 +17,9 @@ import static org.mockito.Mockito.when;
  * Created by Shoma on 10.04.2017.
  */
 public class DataManagerTest {
-//    public static DataManager dataManager;
+
+
+    //    public static DataManager dataManager;
 //
 //    @Test
 //    public void testDeSerializationBook() {
@@ -47,4 +49,6 @@ public class DataManagerTest {
 //    public static void init() {
 //        dataManager = new DataManager();
 //    }
+
+
 }

@@ -11,6 +11,7 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
+import java.io.FileOutputStream;
 import java.lang.reflect.*;
 import library.models.Book;
 import org.w3c.dom.Attr;
@@ -54,9 +55,11 @@ public class LoadToXML {
 
      transformerFactory = TransformerFactory.newInstance();
       transformer = transformerFactory.newTransformer();
+        transformer.setOutputProperty(OutputKeys.METHOD, "xml");
         transformer.setOutputProperty(OutputKeys.INDENT, "yes");
 
    source = new DOMSource(doc);
+
 
  result = new StreamResult(new File("books.xml"));
         transformer.transform(source, result);
@@ -83,43 +86,36 @@ public class LoadToXML {
             Element bookInst = doc.createElement("book");
             rootElement.appendChild(bookInst);
 
-                Field[]fields = Book.class.getDeclaredFields();
-                for (int i = 0; i < fields.length; i++) {
-                Element elementField = doc.createElement(fields[i].getName());
-                Attr attrFields = doc.createAttribute(fields[i].getName());
-                  Field field = fields[i];
-
-                attrFields.setValue(fields[i].getName());
-                elementField .setAttributeNode(attrFields);
-                bookInst.appendChild(elementField);
-                }
+                Element fieldsElement = doc.createElement("fields");
+                bookInst.appendChild(fieldsElement);
 
             Element bookTitle = doc.createElement("Title");
             Attr attrATitle = doc.createAttribute("Title");
             attrATitle.setValue(book.getTitle());
             bookTitle.setAttributeNode(attrATitle);
-            bookInst.appendChild(bookTitle);
+                fieldsElement.appendChild(bookTitle);
 
-//Значения полей написать!
+
 
             Element bookAuthor = doc.createElement("Author");
             Attr attrAuthor = doc.createAttribute("Author");
             attrAuthor.setValue(book.getAuthor());
             bookAuthor.setAttributeNode(attrAuthor);
-            bookInst.appendChild(bookAuthor);
+                fieldsElement.appendChild(bookAuthor);
 
             Element bookYear = doc.createElement("Year");
             Attr attrYear = doc.createAttribute("Year");
             attrYear.setValue(String.valueOf(book.getYear()));
             bookYear.setAttributeNode(attrYear);
-            bookInst.appendChild(bookYear);
+                fieldsElement.appendChild(bookYear);
 
 
             Element bookISBN = doc.createElement("ISBN");
             Attr attrIsbn = doc.createAttribute("ISBN");
             attrIsbn.setValue(book.getIsbn());
             bookISBN.setAttributeNode(attrIsbn);
-            bookInst.appendChild(bookISBN);
+                fieldsElement.appendChild(bookISBN);
+
 
 
             // write the content into xml file

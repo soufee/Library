@@ -1,5 +1,7 @@
 package library.models;
 
+import library.utils.MyInterface;
+
 import java.io.Serializable;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
