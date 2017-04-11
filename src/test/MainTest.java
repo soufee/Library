@@ -89,7 +89,7 @@ class MainTest {
 @Test
     public void returnBookTest()
     {
-//НЕ СРАБАТЫВАЕТ!
+//НЕ СРАБАТЫВАЕТ FOR EACH
         buyBookTestStore();
         takeBookTest();
 //        int quant = library.getStore().size();
