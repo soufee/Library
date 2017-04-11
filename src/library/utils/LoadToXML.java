@@ -83,10 +83,16 @@ public class LoadToXML {
             Element bookInst = doc.createElement("book");
             rootElement.appendChild(bookInst);
 
-//                Field[]fields = Book.class.getDeclaredFields();
-//                for (int i = 0; i < fields.length; i++) {
-//
-//                }
+                Field[]fields = Book.class.getDeclaredFields();
+                for (int i = 0; i < fields.length; i++) {
+                Element elementField = doc.createElement(fields[i].getName());
+                Attr attrFields = doc.createAttribute(fields[i].getName());
+                  Field field = fields[i];
+
+                attrFields.setValue(fields[i].getName());
+                elementField .setAttributeNode(attrFields);
+                bookInst.appendChild(elementField);
+                }
 
             Element bookTitle = doc.createElement("Title");
             Attr attrATitle = doc.createAttribute("Title");
