@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<BOOKS>
+<book>
+<fields>
+<Title Title="How to hack Pentagon"/>
+<Author Author="Snowden"/>
+<Year Year="2017"/>
+<ISBN ISBN="1225653123ewr"/>
+</fields>
+</book>
+<book>
+<fields>
+<Title Title="Thinking in Java"/>
+<Author Author="Gilbert"/>
+<Year Year="2017"/>
+<ISBN ISBN="123123123qwe"/>
+</fields>
+</book>
+<book>
+<fields>
+<Title Title="Intro to Java"/>
+<Author Author="Schildt"/>
+<Year Year="1952"/>
+<ISBN ISBN="123123123q"/>
+</fields>
+</book>
+</BOOKS>

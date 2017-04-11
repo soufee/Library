@@ -2,10 +2,12 @@ package test;
 
 import library.Library;
 import library.models.*;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.util.HashSet;
 import java.util.UUID;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,6 +42,7 @@ class MainTest {
     @AfterEach
     public void clearAll() {
         library = new Library();
+
     }
 
     @Test
@@ -47,6 +50,7 @@ class MainTest {
 
         library.buyBook("Intro to Java", "Schildt", "123123123q", 3, 1952);
         int quant = library.getStore().size();
+
         assertEquals(3, quant);
 
         Book book = new Book("Schildt", "Intro to Java", 1952, "123123123q");
@@ -82,9 +86,10 @@ class MainTest {
         assertEquals(2, quant);
     }
 
+@Test
     public void returnBookTest()
     {
-
+//НЕ СРАБАТЫВАЕТ!
         buyBookTestStore();
         takeBookTest();
 //        int quant = library.getStore().size();
@@ -99,7 +104,11 @@ class MainTest {
 
     }
 
-
+@AfterAll
+   static void clean()
+{
+    library = null;
+}
 
 
 
