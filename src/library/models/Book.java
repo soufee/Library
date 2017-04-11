@@ -1,6 +1,9 @@
 package library.models;
 
 import java.io.Serializable;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.lang.reflect.Parameter;
 
 /**
  * Created by Shoma on 05.04.2017.
@@ -11,6 +14,32 @@ public class Book implements Serializable{
     private int     year;
     private String  isbn;
     private static long serialVersionUID=2L;
+
+
+    public void print()
+
+    {
+        System.out.println(Book.class.getCanonicalName());
+        for (Method method:this.getClass().getMethods()) {
+            System.out.println(method.getName());
+            System.out.println(method.getReturnType().getName());
+            for (Parameter param : method.getParameters()) {
+                System.out.println(param.getName()+" "+param.getType().getName());
+            }
+            System.out.println(method.getModifiers());
+        }
+        try {
+            for (Field field:Class.forName("library.models.Book").getFields()) {
+                System.out.println(field.getName());
+                System.out.println(field.getType().getName());
+                System.out.println(field.isAccessible());
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 
     public Book(String author, String title, int year, String isbn) {
         this.author = author;
